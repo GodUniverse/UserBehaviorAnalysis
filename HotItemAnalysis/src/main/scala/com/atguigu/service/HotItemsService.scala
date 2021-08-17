@@ -2,6 +2,7 @@ package com.atguigu.service
 
 import java.sql.Timestamp
 import java.util
+import java.util.Properties
 
 import com.atguigu.bean.{ItemViewCount, UserBehavior}
 import com.atguigu.common.TService
@@ -24,8 +25,16 @@ class HotItemsService extends TService {
   private val hotItemsDao = new HotItemsDao
 
   def analysis() = {
-    val path = "F:\\study\\IdeaProjects\\UserBehaviorAnalysis\\HotItemAnalysis\\src\\main\\resources\\UserBehavior.csv"
-    val result: DataStream[ItemViewCount] = hotItemsDao.readFile(path)
+    //    val path = "F:\\study\\IdeaProjects\\UserBehaviorAnalysis\\HotItemAnalysis\\src\\main\\resources\\UserBehavior.csv"
+    //    val datas: DataStream[String] = hotItemsDao.readFile(path)
+    val properties = new Properties()
+    properties.setProperty("bootstrap.servers", "hadoop102:9092")
+    properties.setProperty("group.id", "hot1")
+    properties.setProperty("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
+    properties.setProperty("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
+    properties.setProperty("auto.offset.reset", "latest")
+    val datas: DataStream[String] = hotItemsDao.readKafka(properties)
+    val result: DataStream[ItemViewCount] = datas
       .map(line => {
         val arr: Array[String] = line.split(",")
         UserBehavior(arr(0).toLong, arr(1).toLong, arr(2).toInt, arr(3), arr(4).toLong)
