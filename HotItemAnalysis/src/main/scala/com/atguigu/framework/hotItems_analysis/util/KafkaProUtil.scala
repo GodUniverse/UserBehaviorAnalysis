@@ -1,4 +1,4 @@
-package com.atguigu.util
+package com.atguigu.framework.hotItems_analysis.util
 
 import java.util.Properties
 

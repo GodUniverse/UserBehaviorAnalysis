@@ -1,6 +1,6 @@
-package com.atguigu.controller
+package com.atguigu.framework.hotItems_analysis.controller
 
-import com.atguigu.service.HotItemsWithSqlService
+import com.atguigu.framework.hotItems_analysis.service.HotItemsWithSqlService
 
 
 class HotItemsWithSqlController {

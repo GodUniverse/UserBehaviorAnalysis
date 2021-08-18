@@ -1,6 +1,6 @@
-package com.atguigu.common
+package com.atguigu.framework.hotItems_analysis.common
 
-import com.atguigu.util.EnvUtil
+import com.atguigu.framework.hotItems_analysis.util.EnvUtil
 import org.apache.flink.streaming.api.TimeCharacteristic
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 

@@ -1,8 +1,8 @@
-package com.atguigu.service
+package com.atguigu.framework.hotItems_analysis.service
 
-import com.atguigu.bean.UserBehavior
-import com.atguigu.dao.HotItemsDao
-import com.atguigu.util.EnvUtil
+import com.atguigu.framework.hotItems_analysis.bean.UserBehavior
+import com.atguigu.framework.hotItems_analysis.dao.HotItemsDao
+import com.atguigu.framework.hotItems_analysis.util.EnvUtil
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.table.api.{EnvironmentSettings, Slide, Table}
 import org.apache.flink.table.api.scala._

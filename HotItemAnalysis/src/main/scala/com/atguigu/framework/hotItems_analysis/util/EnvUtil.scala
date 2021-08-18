@@ -1,4 +1,4 @@
-package com.atguigu.util
+package com.atguigu.framework.hotItems_analysis.util
 
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 

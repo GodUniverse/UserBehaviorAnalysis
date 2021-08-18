@@ -1,12 +1,12 @@
-package com.atguigu.service
+package com.atguigu.framework.hotItems_analysis.service
 
 import java.sql.Timestamp
 import java.util
 import java.util.Properties
 
-import com.atguigu.bean.{ItemViewCount, UserBehavior}
-import com.atguigu.common.TService
-import com.atguigu.dao.HotItemsDao
+import com.atguigu.framework.hotItems_analysis.bean.{ItemViewCount, UserBehavior}
+import com.atguigu.framework.hotItems_analysis.common.TService
+import com.atguigu.framework.hotItems_analysis.dao.HotItemsDao
 import org.apache.flink.api.common.functions.AggregateFunction
 import org.apache.flink.api.common.state.{ListState, ListStateDescriptor}
 import org.apache.flink.api.java.tuple.{Tuple, Tuple1}

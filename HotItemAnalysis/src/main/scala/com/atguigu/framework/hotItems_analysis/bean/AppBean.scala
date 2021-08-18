@@ -1,4 +1,4 @@
-package com.atguigu.bean
+package com.atguigu.framework.hotItems_analysis.bean
 
 object AppBean {
 

@@ -1,8 +1,8 @@
-package com.atguigu.dao
+package com.atguigu.framework.hotItems_analysis.dao
 
 import java.util.Properties
 
-import com.atguigu.util.EnvUtil
+import com.atguigu.framework.hotItems_analysis.util.EnvUtil
 import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer
 import org.apache.flink.streaming.api.scala._
