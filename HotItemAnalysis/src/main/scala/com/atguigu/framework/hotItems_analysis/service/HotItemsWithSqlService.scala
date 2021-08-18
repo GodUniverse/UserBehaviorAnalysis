@@ -1,5 +1,7 @@
 package com.atguigu.framework.hotItems_analysis.service
 
+import java.net.URL
+
 import com.atguigu.framework.hotItems_analysis.bean.UserBehavior
 import com.atguigu.framework.hotItems_analysis.dao.HotItemsDao
 import com.atguigu.framework.hotItems_analysis.util.EnvUtil
@@ -12,7 +14,8 @@ class HotItemsWithSqlService {
   private val hotItemsDao = new HotItemsDao
 
   def analysis():Unit = {
-    val datas: DataStream[String] = hotItemsDao.readFile("F:\\study\\IdeaProjects\\UserBehaviorAnalysis\\HotItemAnalysis\\src\\main\\resources\\UserBehavior.csv")
+    val resource: URL = getClass.getResource("/UserBehavior.csv")
+    val datas: DataStream[String] = hotItemsDao.readFile(resource.getPath)
     val dataStream: DataStream[UserBehavior] = datas.map(line => {
       val arr: Array[String] = line.split(",")
       UserBehavior(arr(0).toLong, arr(1).toLong, arr(2).toInt, arr(3), arr(4).toLong)

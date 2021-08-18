@@ -1,5 +1,7 @@
 package com.atguigu.uv_analysis
 
+import java.net.URL
+
 import com.atguigu.framework.hotItems_analysis.bean.UserBehavior
 import org.apache.flink.streaming.api.TimeCharacteristic
 import org.apache.flink.streaming.api.scala._
@@ -18,7 +20,8 @@ object UvAnalysis {
     env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
     env.setParallelism(1)
 
-    env.readTextFile("F:\\study\\IdeaProjects\\UserBehaviorAnalysis\\HotItemAnalysis\\src\\main\\resources\\UserBehavior.csv")
+    val resource: URL = getClass.getResource("/UserBehavior.csv")
+    env.readTextFile(resource.getPath)
       .map(line => {
         val arr: Array[String] = line.split(",")
         UserBehavior(arr(0).toLong, arr(1).toLong, arr(2).toInt, arr(3), arr(4).toLong)

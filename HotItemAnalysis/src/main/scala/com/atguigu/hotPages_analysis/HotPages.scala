@@ -1,10 +1,10 @@
 package com.atguigu.hotPages_analysis
 
+import java.net.URL
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util
 import java.util.Map
-
 import org.apache.flink.api.common.functions.AggregateFunction
 import org.apache.flink.api.common.state.MapStateDescriptor
 import org.apache.flink.streaming.api.TimeCharacteristic
@@ -28,8 +28,8 @@ object HotPages {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
     env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
     env.setParallelism(1)
-
-    val datas: DataStream[ApacheLogEvent] = env.readTextFile("F:\\study\\IdeaProjects\\UserBehaviorAnalysis\\HotItemAnalysis\\src\\main\\resources\\apache.log")
+    val resource: URL = getClass.getResource("/apache.log")
+    val datas: DataStream[ApacheLogEvent] = env.readTextFile(resource.getPath)
       .map(line => {
         val arr: Array[String] = line.split(" ")
         val dateFormat = new SimpleDateFormat("dd/MM/yyyy:HH:mm:ss")

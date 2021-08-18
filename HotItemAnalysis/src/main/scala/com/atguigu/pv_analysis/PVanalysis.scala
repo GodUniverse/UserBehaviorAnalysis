@@ -1,9 +1,10 @@
 package com.atguigu.pv_analysis
 
+import java.net.URL
+
 import com.atguigu.framework.hotItems_analysis.bean.UserBehavior
 import org.apache.flink.api.common.functions.AggregateFunction
 import org.apache.flink.streaming.api.TimeCharacteristic
-import org.apache.flink.streaming.api.functions.KeyedProcessFunction
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.api.scala.function.WindowFunction
 import org.apache.flink.streaming.api.windowing.time.Time
@@ -17,8 +18,8 @@ object PVanalysis {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
     env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
     env.setParallelism(1)
-
-    env.readTextFile("F:\\study\\IdeaProjects\\UserBehaviorAnalysis\\HotItemAnalysis\\src\\main\\resources\\UserBehavior.csv")
+    val resource: URL = getClass.getResource("/UserBehavior.csv")
+    env.readTextFile(resource.getPath)
       .map(line => {
         val arr: Array[String] = line.split(",")
         UserBehavior(arr(0).toLong, arr(1).toLong, arr(2).toInt, arr(3), arr(4).toLong)
