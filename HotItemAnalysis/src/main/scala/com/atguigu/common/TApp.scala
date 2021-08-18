@@ -13,7 +13,7 @@ trait TApp {
     try {
       op
     } catch {
-      case exception: Exception => exception.getMessage
+      case exception: Exception => print(exception.getMessage)
     }
     env.execute(jobName)
   }
